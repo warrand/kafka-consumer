@@ -19,7 +19,7 @@ public class KafkaConfig {
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"192.168.0.103:9092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"192.168.0.191:9092");
         config.put(ConsumerConfig.GROUP_ID_CONFIG,"my_group");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class);
@@ -27,7 +27,7 @@ public class KafkaConfig {
     }
 
     // Creating a listener
-    public ConcurrentKafkaListenerContainerFactory concurrentKafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, String> KafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
